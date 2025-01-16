@@ -6,16 +6,16 @@ class ReduxDemo extends Component {
     // Step 2: Create Reducer : State n action
     const reducer = (state, action) => {
       if (action.type === "ATTACK") {
-        return action.payload;
+        return ({...state, [action.type]: action.payload});
       }
       if(action.type === "GREEN_ATTACK"){
-        return action.payload; 
+        return ({...state, [action.type]: action.payload});
       }
       return state;
     };
 
     // Step 1: Create store : reducer n state
-    const store = createStore(reducer, "Peace"); // Peace is current state
+    const store = createStore(reducer, {name:"Peace"}); // Peace is current state
 
     // Step 3: Subscribe
     store.subscribe(() => {
